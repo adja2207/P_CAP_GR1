@@ -6,14 +6,28 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^6",
-    "express": "^4"
+    "@cap-js/graphql": "^0.6.1",
+    "@graphql-tools/schema": "^10.0.0",
+    "@sap/cds": "^7.0.2",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4",
+    "graphql": "^16.7.1",
+    "graphql-http": "^1.19.0",
+    "graphql-tools": "^9.0.0"
   },
   "devDependencies": {
+    "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
+    "@sap/ux-specification": "^1.108.8",
+    "@sapui5/ts-types": "^1.92.2",
+    "cds-swagger-ui-express": "^0.6.0",
+    "eslint": "^7.32.0",
     "sqlite3": "^5.1.6"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-sales": "cds watch --open sales/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "requires": {
@@ -24,5 +38,8 @@
         }
       }
     }
-  }
+  },
+  "sapux": [
+    "app/sales"
+  ]
 }

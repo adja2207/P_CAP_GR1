@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="CatalogService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Sales" EntityType="CatalogService.Sales">
+                    <NavigationPropertyBinding Path="ToSalesItem" Target="SalesItem"/>
+                </EntitySet>
+                <EntitySet Name="SalesItem" EntityType="CatalogService.SalesItem">
+                    <NavigationPropertyBinding Path="ToUnitOfMeasuares" Target="VH_UnitOfMeasuares"/>
+                </EntitySet>
+                <EntitySet Name="VH_UnitOfMeasuares" EntityType="CatalogService.VH_UnitOfMeasuares"/>
+            </EntityContainer>
+            <EntityType Name="Sales">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="email"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="email" Type="Edm.String" MaxLength="30" Nullable="false"/>
+                <Property Name="firtsname" Type="Edm.String" MaxLength="30"/>
+                <Property Name="lastname" Type="Edm.String" MaxLength="30"/>
+                <Property Name="country" Type="Edm.String" MaxLength="30"/>
+                <Property Name="createon" Type="Edm.Date"/>
+                <Property Name="deliverydate" Type="Edm.DateTimeOffset"/>
+                <Property Name="orderstatus" Type="Edm.Int32"/>
+                <Property Name="imagenurl" Type="Edm.String"/>
+                <NavigationProperty Name="ToSalesItem" Type="CatalogService.SalesItem">
+                    <ReferentialConstraint Property="ToSalesItem_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="ToSalesItem_ID" Type="Edm.Guid"/>
+            </EntityType>
+            <EntityType Name="SalesItem">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="40"/>
+                <Property Name="description" Type="Edm.String" MaxLength="40"/>
+                <Property Name="releasedate" Type="Edm.DateTimeOffset"/>
+                <Property Name="discontinueddate" Type="Edm.DateTimeOffset"/>
+                <Property Name="price" Type="Edm.Decimal" Scale="2" Precision="12"/>
+                <Property Name="height" Type="Edm.Decimal" Scale="3" Precision="15"/>
+                <Property Name="width" Type="Edm.Decimal" Scale="3" Precision="13"/>
+                <Property Name="depth" Type="Edm.Decimal" Scale="2" Precision="12"/>
+                <Property Name="quantity" Type="Edm.Decimal" Scale="2" Precision="12"/>
+                <NavigationProperty Name="ToUnitOfMeasuares" Type="CatalogService.VH_UnitOfMeasuares">
+                    <ReferentialConstraint Property="ToUnitOfMeasuares_ID" ReferencedProperty="Code"/>
+                </NavigationProperty>
+                <Property Name="ToUnitOfMeasuares_ID" Type="Edm.Guid"/>
+            </EntityType>
+            <EntityType Name="VH_UnitOfMeasuares">
+                <Key>
+                    <PropertyRef Name="Code"/>
+                </Key>
+                <Property Name="Code" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="Text" Type="Edm.String"/>
+            </EntityType>
+            <Annotations Target="CatalogService.Sales/ID">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Sales/email">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Sales/firtsname">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="CatalogService.Sales/lastname">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="CatalogService.SalesItem/ID">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="CatalogService.SalesItem/name">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="CatalogService.SalesItem/description">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="CatalogService.SalesItem/price">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="CatalogService.SalesItem/quantity">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                <Annotation Term="Validation.Minimum" Int="0"/>
+                <Annotation Term="Validation.Maximum" Int="100"/>
+            </Annotations>
+            <Annotations Target="CatalogService.SalesItem/ToUnitOfMeasuares_ID">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="CatalogService.EntityContainer/VH_UnitOfMeasuares">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

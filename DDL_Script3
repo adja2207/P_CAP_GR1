@@ -1,0 +1,70 @@
+
+CREATE TABLE com_logali_Sales (
+  ID NVARCHAR(36) NOT NULL,
+  email NVARCHAR(30) NOT NULL,
+  firtsname NVARCHAR(30),
+  lastname NVARCHAR(30),
+  country NVARCHAR(30),
+  createon DATE_TEXT,
+  deliverydate TIMESTAMP_TEXT,
+  orderstatus INTEGER,
+  imagenurl NVARCHAR(5000),
+  SalesItem_ID NVARCHAR(36),
+  PRIMARY KEY(ID, email)
+);
+
+CREATE TABLE com_logali_SalesItem (
+  ID NVARCHAR(36) NOT NULL,
+  name NVARCHAR(40),
+  description NVARCHAR(40),
+  releasedate TIMESTAMP_TEXT,
+  discontinueddate TIMESTAMP_TEXT,
+  price DECIMAL(12, 2),
+  height DECIMAL(15, 3),
+  width DECIMAL(13, 3),
+  depth DECIMAL(12, 2),
+  quantity DECIMAL(12, 2),
+  UnitOfMeasuares_ID NVARCHAR(36),
+  PRIMARY KEY(ID)
+);
+
+CREATE TABLE com_logali_UnitOfMeasuares (
+  ID NVARCHAR(36) NOT NULL,
+  description NVARCHAR(5000),
+  PRIMARY KEY(ID)
+);
+
+CREATE VIEW com_logali_SelSales AS SELECT
+  Sales_0.ID,
+  Sales_0.email,
+  Sales_0.firtsname,
+  Sales_0.lastname,
+  Sales_0.country,
+  Sales_0.createon,
+  Sales_0.deliverydate,
+  Sales_0.orderstatus,
+  Sales_0.imagenurl,
+  Sales_0.SalesItem_ID
+FROM com_logali_Sales AS Sales_0;
+
+CREATE VIEW com_logali_SelSales1 AS SELECT
+  Sales_0.ID,
+  Sales_0.email,
+  Sales_0.firtsname,
+  Sales_0.lastname,
+  Sales_0.country,
+  Sales_0.createon,
+  Sales_0.deliverydate,
+  Sales_0.orderstatus,
+  Sales_0.imagenurl,
+  Sales_0.SalesItem_ID
+FROM com_logali_Sales AS Sales_0;
+
+CREATE VIEW com_logali_SelSales2 AS SELECT
+  Sales_0.ID,
+  Sales_0.email,
+  Sales_0.firtsname,
+  Sales_0.lastname,
+  Sales_0.orderstatus
+FROM com_logali_Sales AS Sales_0;
+
