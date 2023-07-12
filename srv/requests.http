@@ -32,6 +32,6 @@ DELETE http://localhost:4004/odata/v4/manage-orders/DeleteSales?$filter=email eq
 POST http://localhost:4004/odata/v4/manage-orders/cancelOrder 
 Content-Type: application/json
 
-{"clientEmail" : "thellin2@uol.com.br"}
+{"email" : "thellin2@uol.com.br"}
 
 
