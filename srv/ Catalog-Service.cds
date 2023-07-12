@@ -5,7 +5,7 @@ entity  Sales
 as Select from logali.Sales {
     ID                             @mandatory,
     email                         @mandatory,
-    firtsname                    @mandatory,
+    firtsname                   ,
     lastname                    @mandatory,
     country                               ,
     createon,

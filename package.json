@@ -34,7 +34,7 @@
       "db": {
         "kind": "sqlite",
         "credentials": {
-          "database": "db/Sales.sqlite"
+          "database": "db/SalesOrder.sqlite"
         }
       }
     }

@@ -1,15 +1,15 @@
 using CatalogService as service from '../../srv/ Catalog-Service';
 
 annotate service.Sales with @(
-    Capabilities: {DeleteRestrictions : {
-       Deletable:false }},
+    Capabilities: {  DeleteRestrictions : {
+       Deletable:false }  },
 
     UI.HeaderInfo      : {
         TypeName       : '{i18n>Product}',
         TypeNamePlural : '{i18n>Products}',
         ImageUrl       : imagenurl,
         Title          : {Value : ID},
-        Description    : {Value : false}
+        Description    : {Value : false},
     },
     UI.SelectionFields : [
         orderstatus,
@@ -53,12 +53,12 @@ annotate service.Sales with @(
             Label : '{i18n>orderstatus}',
             Value : orderstatus,
         },
-                {
+        {
             $Type : 'UI.DataField',
             Label : '{i18n>ToSalesItem_ID}',
-            Value : ToSalesItem_ID,
+             Value : ToSalesItem_ID,
         },
-    ]
+    ],
 );
 annotate service.Sales with {
         orderstatus @title : '{i18n> orderstatus}';
@@ -108,7 +108,12 @@ annotate service.Sales with @(
                 Label : '{i18n>imagenurl}',
                 Value : imagenurl,
             },
-        ],
+            {
+                $Type : 'UI.DataField',
+                Label : '{i18n>item}',
+                Value : ToSalesItem_ID,
+            },
+        ]
     },
     UI.Facets : [
         {
@@ -122,3 +127,6 @@ annotate service.Sales with @(
 annotate service.Sales with {
     imagenurl @(UI.IsImageURL : true)
 };
+
+
+
